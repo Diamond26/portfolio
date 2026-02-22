@@ -3,6 +3,7 @@ import "./globals.css";
 import { PERSONAL_INFO } from "@/lib/data";
 import Providers from "./providers";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 /* ─── SEO Metadata ──────────────────────────────────────────────────────── */
 export const metadata: Metadata = {
@@ -93,6 +94,7 @@ export default function RootLayout({
             <body className="bg-background text-text-primary antialiased">
                 <Providers>{children}</Providers>
                 <Analytics />
+                <SpeedInsights />
             </body>
         </html>
     );
