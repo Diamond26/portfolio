@@ -70,8 +70,14 @@ export const translations = {
                     solution:
                         "Sviluppata un'architettura backend Node.js + MySQL con autenticazione basata su sessioni, RBAC (Role-Based Access Control), validazione input lato server (OWASP basics) e un database relazionale normalizzato per garantire integrità e manutenibilità.",
                     tags: ["JavaScript", "Node.js", "MySQL", "OWASP", "Session Auth", "RBAC"],
-                    githubUrl: "https://github.com/Diamond26",
+                    githubUrl: "https://github.com/Diamond26/WebAppTicketingSystem",
                     imageAlt: "Dashboard sistema di gestione ticket",
+                    previewImages: [
+                        "/loginpage.png",
+                        "/admindashboard.png",
+                        "/ticketprova.png",
+                        "/chatrealtimeticketdetails.png",
+                    ],
                 },
                 {
                     id: "project-2",
@@ -85,6 +91,8 @@ export const translations = {
                     tags: ["Unity", "C#", "Game Dev", "State Machine", "Narrative Design", "In Sviluppo"],
                     githubUrl: "https://github.com/Diamond26",
                     imageAlt: "Videogioco psicologico in Unity",
+                    previewImage: "/game-preview.png",
+                    showGithub: false,
                 },
                 {
                     id: "project-3",
@@ -96,8 +104,12 @@ export const translations = {
                     solution:
                         "Architettura basata su componenti React riutilizzabili con un unico file di configurazione dei contenuti (lib/data.ts) e un sistema i18n leggero implementato tramite React Context. Security headers gestiti direttamente in next.config.ts. Build statica ottimizzata per Lighthouse ≥ 95.",
                     tags: ["Next.js", "TypeScript", "Tailwind CSS", "i18n", "Vercel", "SEO"],
-                    githubUrl: "https://github.com/Diamond26",
+                    githubUrl: "https://github.com/Diamond26/portfolio",
                     imageAlt: "Portfolio personale — questo sito",
+                    previewImages: [
+                        "/portfolio screen1.png",
+                        "/portfolio screen2.png",
+                    ],
                 },
             ],
         },
@@ -188,8 +200,14 @@ export const translations = {
                     solution:
                         "Built a Node.js + MySQL backend architecture with session-based authentication, RBAC (Role-Based Access Control), server-side input validation (OWASP basics), and a normalised relational database for integrity and maintainability.",
                     tags: ["JavaScript", "Node.js", "MySQL", "OWASP", "Session Auth", "RBAC"],
-                    githubUrl: "https://github.com/Diamond26",
+                    githubUrl: "https://github.com/Diamond26/WebAppTicketingSystem",
                     imageAlt: "Ticket management system dashboard",
+                    previewImages: [
+                        "/loginpage.png",
+                        "/admindashboard.png",
+                        "/ticketprova.png",
+                        "/chatrealtimeticketdetails.png",
+                    ],
                 },
                 {
                     id: "project-2",
@@ -203,6 +221,8 @@ export const translations = {
                     tags: ["Unity", "C#", "Game Dev", "State Machine", "Narrative Design", "In Development"],
                     githubUrl: "https://github.com/Diamond26",
                     imageAlt: "Psychological game in Unity",
+                    previewImage: "/game-preview.png",
+                    showGithub: false,
                 },
                 {
                     id: "project-3",
@@ -214,8 +234,12 @@ export const translations = {
                     solution:
                         "Architecture built on reusable React components with a single content configuration file (lib/data.ts) and a lightweight i18n system implemented via React Context. Security headers managed directly in next.config.ts. Static build optimised for Lighthouse ≥ 95.",
                     tags: ["Next.js", "TypeScript", "Tailwind CSS", "i18n", "Vercel", "SEO"],
-                    githubUrl: "https://github.com/Diamond26",
+                    githubUrl: "https://github.com/Diamond26/portfolio",
                     imageAlt: "Personal portfolio — this website",
+                    previewImages: [
+                        "/portfolio screen1.png",
+                        "/portfolio screen2.png",
+                    ],
                 },
             ],
         },
