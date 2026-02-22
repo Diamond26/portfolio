@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { PERSONAL_INFO } from "@/lib/data";
 import Providers from "./providers";
+import { Analytics } from "@vercel/analytics/next";
 
 /* ─── SEO Metadata ──────────────────────────────────────────────────────── */
 export const metadata: Metadata = {
@@ -91,6 +92,7 @@ export default function RootLayout({
             </head>
             <body className="bg-background text-text-primary antialiased">
                 <Providers>{children}</Providers>
+                <Analytics />
             </body>
         </html>
     );
