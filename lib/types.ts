@@ -1,9 +1,3 @@
-/**
- * Type definitions for the portfolio data layer.
- * Edit these interfaces when adding new fields to any section.
- */
-
-/** A single portfolio project */
 export interface Project {
     id: string;
     title: string;
@@ -13,17 +7,35 @@ export interface Project {
     tags: string[];
     githubUrl: string;
     imageAlt: string;
+    status: "live" | "wip" | "this";
+    year: string;
+    kicker: string;
+    previewImages?: string[];
+    showGithub?: boolean;
 }
 
-/** A technology / tool in the stack */
 export interface TechItem {
     name: string;
-    /** Inline SVG path or URL */
     icon: string;
-    category: "language" | "runtime" | "database" | "tool" | "security";
+    glyph: string;
+    category: string;
 }
 
-/** Personal information used across the page */
+export interface ServiceItem {
+    n: string;
+    title: string;
+    desc: string;
+    bullets: string[];
+}
+
+export interface TimelineItem {
+    year: string;
+    live?: boolean;
+    title: string;
+    desc: string;
+    chips: string[];
+}
+
 export interface PersonalInfo {
     name: string;
     role: string;

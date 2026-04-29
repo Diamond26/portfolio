@@ -2,11 +2,12 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   // Enable React strict mode for better development experience
-  reactStrictMode: true,
+  reactStrictMode: false,
 
   // Image optimization configuration
   images: {
     formats: ["image/avif", "image/webp"],
+    qualities: [75, 95],
     remotePatterns: [],
   },
 

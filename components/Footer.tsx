@@ -1,25 +1,23 @@
 "use client";
 
-import { PERSONAL_INFO } from "@/lib/data";
 import { useLanguage } from "@/context/LanguageContext";
+import { PERSONAL_INFO } from "@/lib/data";
 
-/**
- * Footer — barra copyright minimale.
- */
 export default function Footer() {
     const { t } = useLanguage();
     const year = new Date().getFullYear();
 
     return (
-        <footer className="border-t border-zinc-800 px-6 py-8 text-center md:px-12">
-            <p className="text-sm text-zinc-600">
-                © {year}{" "}
-                <span className="text-zinc-400">{PERSONAL_INFO.name}</span>
-                {" — "}
-                <span className="font-mono text-xs">
-                    {t.footer.builtWith} Next.js · TypeScript · Tailwind CSS
-                </span>
-            </p>
+        <footer className="footer">
+            <div>
+                <span className="footer__mono">© {year} {PERSONAL_INFO.name.toUpperCase()}</span>
+                <span className="footer__sep"> · </span>
+                <span>{t.footer.rights}</span>
+            </div>
+            <div>
+                <span className="footer__mono">{t.footer.builtWith}</span>
+                <span> Next.js · TypeScript · Tailwind</span>
+            </div>
         </footer>
     );
 }

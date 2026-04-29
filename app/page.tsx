@@ -1,47 +1,34 @@
+import AmbientBackground from "@/components/AmbientBackground";
+import CursorEffect from "@/components/CursorEffect";
+import RevealObserver from "@/components/RevealObserver";
+import ClickSpark from "@/components/ClickSpark";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Projects from "@/components/Projects";
 import TechStack from "@/components/TechStack";
+import Services from "@/components/Services";
+import Timeline from "@/components/Timeline";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
-/**
- * Main page — single scrollable page that assembles all sections.
- * Each section has a unique id used by the navbar anchor links.
- */
 export default function Home() {
     return (
-        <>
-            {/* Fixed top navigation */}
+        <ClickSpark sparkColor="#7C7AFF" sparkCount={8} sparkRadius={22} sparkSize={9} duration={480}>
+            <AmbientBackground />
+            <CursorEffect />
+            <RevealObserver />
             <Navbar />
-
-            <main>
-                {/* 01 — Introduction / landing */}
+            <main id="top">
                 <Hero />
-
-                {/* 02 — Bio + highlights */}
-                <section id="about-wrapper">
-                    <About />
-                </section>
-
-                {/* 03 — Portfolio projects */}
-                <section id="projects-wrapper" className="bg-zinc-950/60">
-                    <Projects />
-                </section>
-
-                {/* 04 — Technology stack */}
-                <section id="stack-wrapper">
-                    <TechStack />
-                </section>
-
-                {/* 05 — Contact */}
-                <section id="contact-wrapper" className="bg-zinc-950/60">
-                    <Contact />
-                </section>
+                <About />
+                <Projects />
+                <TechStack />
+                <Services />
+                <Timeline />
+                <Contact />
             </main>
-
             <Footer />
-        </>
+        </ClickSpark>
     );
 }

@@ -1,73 +1,63 @@
 "use client";
 
-import { PERSONAL_INFO } from "@/lib/data";
 import { useLanguage } from "@/context/LanguageContext";
+import { PERSONAL_INFO } from "@/lib/data";
 
-/**
- * Contact — email e GitHub con icone.
- * LinkedIn è stato rimosso intenzionalmente.
- */
 export default function Contact() {
     const { t } = useLanguage();
 
-    const links = [
-        {
-            label: t.contact.emailLabel,
-            value: PERSONAL_INFO.email,
-            href: `mailto:${PERSONAL_INFO.email}`,
-            icon: (
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-                </svg>
-            ),
-        },
-        {
-            label: t.contact.githubLabel,
-            value: PERSONAL_INFO.github.replace("https://", ""),
-            href: PERSONAL_INFO.github,
-            external: true,
-            icon: (
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12z" />
-                </svg>
-            ),
-        },
-    ];
-
     return (
-        <section
-            id="contact"
-            aria-labelledby="contact-heading"
-            className="section-padding mx-auto max-w-6xl"
-        >
-            <div className="mb-12">
-                <p className="mb-2 font-mono text-xs font-medium uppercase tracking-widest text-indigo-400">
-                    {t.contact.sectionLabel}
-                </p>
-                <h2 id="contact-heading" className="text-3xl font-bold text-zinc-100 sm:text-4xl">
-                    {t.contact.heading}
-                </h2>
-            </div>
+        <section id="contact" className="section contact" aria-labelledby="contact-heading">
+            <div className="contact__card glass reveal">
+                <span className="section__label">{t.contact.sectionLabel}</span>
 
-            <div className="flex flex-col gap-4 sm:flex-row sm:flex-wrap">
-                {links.map(({ label, value, href, external, icon }) => (
-                    <a
-                        key={label}
-                        href={href}
-                        target={external ? "_blank" : undefined}
-                        rel={external ? "noopener noreferrer" : undefined}
-                        className="flex items-center gap-4 rounded-xl border border-zinc-800 bg-zinc-900 px-6 py-5 transition-all duration-200 hover:border-indigo-500/40 hover:bg-zinc-800/60 sm:flex-1"
-                    >
-                        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-indigo-500/10 text-indigo-400">
-                            {icon}
+                <h2 id="contact-heading" className="contact__title">
+                    <span>{t.contact.titleA}</span><br />
+                    <em className="serif">{t.contact.titleB}</em>
+                </h2>
+
+                <p className="contact__lede">{t.contact.lede}</p>
+
+                <div className="contact__links">
+                    <a className="clink" href={`mailto:${PERSONAL_INFO.email}`}>
+                        <span className="clink__icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+                                <rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>
+                            </svg>
                         </span>
-                        <div>
-                            <p className="text-xs font-medium uppercase tracking-widest text-zinc-500">{label}</p>
-                            <p className="mt-0.5 truncate text-sm font-medium text-zinc-200">{value}</p>
-                        </div>
+                        <span className="clink__body">
+                            <span className="clink__label">{t.contact.emailLabel}</span>
+                            <span className="clink__value">{PERSONAL_INFO.email}</span>
+                        </span>
+                        <span className="clink__arrow" aria-hidden="true">↗</span>
                     </a>
-                ))}
+
+                    <a className="clink" href={PERSONAL_INFO.github} target="_blank" rel="noopener noreferrer">
+                        <span className="clink__icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                                <path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.17-1.11-1.48-1.11-1.48-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.9.83.09-.65.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02A9.5 9.5 0 0 1 12 6.8c.85 0 1.71.12 2.51.34 1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.7-4.56 4.94.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"/>
+                            </svg>
+                        </span>
+                        <span className="clink__body">
+                            <span className="clink__label">{t.contact.githubLabel}</span>
+                            <span className="clink__value">{PERSONAL_INFO.github.replace("https://", "")}</span>
+                        </span>
+                        <span className="clink__arrow" aria-hidden="true">↗</span>
+                    </a>
+
+                    <div className="clink">
+                        <span className="clink__icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M12 22s-7-4.5-7-11a7 7 0 1 1 14 0c0 6.5-7 11-7 11Z"/>
+                                <circle cx="12" cy="11" r="2.5"/>
+                            </svg>
+                        </span>
+                        <span className="clink__body">
+                            <span className="clink__label">{t.contact.locationLabel}</span>
+                            <span className="clink__value">{t.contact.locationValue}</span>
+                        </span>
+                    </div>
+                </div>
             </div>
         </section>
     );
