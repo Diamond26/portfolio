@@ -7,7 +7,7 @@ const nextConfig: NextConfig = {
   // Image optimization configuration
   images: {
     formats: ["image/avif", "image/webp"],
-    qualities: [75, 95],
+    qualities: [75, 90, 95],
     remotePatterns: [],
   },
 

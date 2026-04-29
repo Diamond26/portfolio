@@ -30,11 +30,6 @@ const icons = {
             <path d="m2 17 10 5 10-5" />
         </svg>
     ),
-    services: (
-        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M13 2 3 14h9l-1 8 10-12h-9l1-8Z" />
-        </svg>
-    ),
     timeline: (
         <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
             <path d="M3 5h2" />
@@ -86,11 +81,6 @@ export default function Navbar() {
             icon: <span style={iconStyle}>{icons.stack}</span>,
             label: t.nav.stack,
             onClick: () => scrollTo("stack"),
-        },
-        {
-            icon: <span style={iconStyle}>{icons.services}</span>,
-            label: t.nav.services,
-            onClick: () => scrollTo("services"),
         },
         {
             icon: <span style={iconStyle}>{icons.timeline}</span>,

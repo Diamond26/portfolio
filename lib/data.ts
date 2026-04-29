@@ -3,7 +3,7 @@ import type { PersonalInfo, TechItem, ServiceItem, TimelineItem } from "./types"
 export const PERSONAL_INFO: PersonalInfo = {
     name: "Davide Secci",
     role: "Software Developer",
-    tagline: "Building secure, high-performance systems from the ground up.",
+    tagline: "Soluzioni web su misura — dall'idea al deploy, per aziende e progetti indipendenti.",
     email: "davide.secci26@gmail.com",
     github: "https://github.com/Diamond26",
     linkedin: "",
@@ -11,25 +11,40 @@ export const PERSONAL_INFO: PersonalInfo = {
 };
 
 export const TECH_STACK: TechItem[] = [
-    { name: "TypeScript", category: "Linguaggio", icon: "ts",       glyph: "TS" },
-    { name: "JavaScript", category: "Linguaggio", icon: "js",       glyph: "JS" },
-    { name: "C#",         category: "Linguaggio", icon: "csharp",   glyph: "C#" },
-    { name: "Node.js",    category: "Runtime",    icon: "node",     glyph: "⬢"  },
-    { name: "Next.js",    category: "Framework",  icon: "next",     glyph: "N"  },
-    { name: "React",      category: "Framework",  icon: "react",    glyph: "⚛"  },
-    { name: "MySQL",      category: "Database",   icon: "mysql",    glyph: "DB" },
-    { name: "Unity",      category: "Engine",     icon: "unity",    glyph: "U"  },
-    { name: "Tailwind",   category: "CSS",        icon: "tailwind", glyph: "~"  },
-    { name: "Git",        category: "Tool",       icon: "git",      glyph: "⎇"  },
-    { name: "OWASP",      category: "Sicurezza",  icon: "security", glyph: "⛨"  },
-    { name: "Vercel",     category: "Deploy",     icon: "vercel",   glyph: "▲"  },
+    // ── Linguaggi
+    { name: "TypeScript", category: "Linguaggio",  icon: "ts",       glyph: "TS" },
+    { name: "JavaScript", category: "Linguaggio",  icon: "js",       glyph: "JS" },
+    { name: "C#",         category: "Linguaggio",  icon: "csharp",   glyph: "C#" },
+    { name: "HTML",       category: "Linguaggio",  icon: "html",     glyph: "</>" },
+    { name: "CSS",        category: "Linguaggio",  icon: "css",      glyph: "{}" },
+    // ── Runtime & Framework
+    { name: "Node.js",    category: "Runtime",     icon: "node",     glyph: "⬢"  },
+    { name: "Next.js",    category: "Framework",   icon: "next",     glyph: "N"  },
+    { name: "React",      category: "Framework",   icon: "react",    glyph: "⚛"  },
+    { name: "Express",    category: "Framework",   icon: "express",  glyph: "ex" },
+    { name: "Electron",   category: "Desktop",     icon: "electron", glyph: "e-" },
+    // ── Database
+    { name: "MySQL",      category: "Database",    icon: "mysql",    glyph: "DB" },
+    { name: "SQLite",     category: "Database",    icon: "sqlite",   glyph: "🗃"  },
+    { name: "Supabase",   category: "BaaS",        icon: "supabase", glyph: "SB" },
+    // ── Styling
+    { name: "Tailwind",   category: "CSS",         icon: "tailwind", glyph: "~"  },
+    // ── Game
+    { name: "Unity",      category: "Engine",      icon: "unity",    glyph: "U"  },
+    // ── Tools & DevOps
+    { name: "Git",        category: "Tool",        icon: "git",      glyph: "⎇"  },
+    { name: "GitHub",     category: "Tool",        icon: "github",   glyph: "🐙" },
+    { name: "VS Code",    category: "Editor",      icon: "vscode",   glyph: "📘" },
+    { name: "Vercel",     category: "Deploy",      icon: "vercel",   glyph: "▲"  },
+    // ── Sicurezza
+    { name: "OWASP",      category: "Sicurezza",   icon: "security", glyph: "⛨"  },
 ];
 
 export const SERVICES: ServiceItem[] = [
     {
         n: "01",
         title: "Web App & API",
-        desc: "Applicazioni full-stack moderne: dashboard, gestionali, marketplace. Architettura modulare, scalabile e sicura.",
+        desc: "Applicazioni web su misura per aziende e professionisti: dashboard, gestionali, portali, marketplace. Architettura modulare, scalabile e pronta alla produzione.",
         bullets: ["Next.js · Node.js · MySQL", "Auth & RBAC", "REST API · validazione", "Deploy su Vercel"],
     },
     {
@@ -41,7 +56,7 @@ export const SERVICES: ServiceItem[] = [
     {
         n: "03",
         title: "Security & Performance",
-        desc: "Audit di base, hardening, header HTTP sicuri, profilazione query e bundle. Per chi vuole sapere se un sito è davvero solido.",
+        desc: "Audit, hardening e ottimizzazione per siti e applicazioni esistenti. Per chi vuole sapere se il proprio prodotto è davvero solido prima di scalare.",
         bullets: ["OWASP basics", "CSP · HSTS · headers", "Profilazione query MySQL", "Riduzione bundle / TTFB"],
     },
 ];
@@ -50,7 +65,7 @@ export const SERVICES_EN: ServiceItem[] = [
     {
         n: "01",
         title: "Web Apps & APIs",
-        desc: "Modern full-stack applications: dashboards, admin tools, marketplaces. Modular, scalable and secure architecture.",
+        desc: "Custom web applications for businesses and professionals: dashboards, management tools, portals, marketplaces. Modular, scalable, production-ready architecture.",
         bullets: ["Next.js · Node.js · MySQL", "Auth & RBAC", "REST APIs · validation", "Deploy on Vercel"],
     },
     {
@@ -62,7 +77,7 @@ export const SERVICES_EN: ServiceItem[] = [
     {
         n: "03",
         title: "Security & Performance",
-        desc: "Basic audits, hardening, secure HTTP headers, query and bundle profiling. For people who want to know if their site is solid.",
+        desc: "Audit, hardening and optimisation for existing sites and applications. For anyone who wants to know if their product is truly solid before scaling.",
         bullets: ["OWASP basics", "CSP · HSTS · headers", "MySQL query profiling", "Bundle / TTFB reduction"],
     },
 ];
