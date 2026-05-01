@@ -8,11 +8,12 @@ const AUTO_MS   = 4500;
 const TAGS_MAX  = 4;
 
 /* ─── Position helper ─── */
-function getPos(i: number, active: number, total: number): "center" | "left" | "right" {
+function getPos(i: number, active: number, total: number): "center" | "left" | "right" | "hidden" {
     const diff = ((i - active) % total + total) % total;
     if (diff === 0) return "center";
     if (diff === 1) return "right";
-    return "left";
+    if (diff === total - 1) return "left";
+    return "hidden";
 }
 
 /* ─── Lock placeholder ─── */

@@ -648,6 +648,15 @@ body.theme-light .pcf__card {
   filter: brightness(0.72) saturate(0.7);
 }
 
+/* ── Hidden cards (excess cards beyond immediate neighbors) ── */
+.pcf__card--hidden {
+  transform: translateX(-530px) scale(0.78) rotateY(22deg);
+  z-index: 1;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
 /* ── Thumbnail ── */
 .pcf__thumb {
   position: relative;
