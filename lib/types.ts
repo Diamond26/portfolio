@@ -12,6 +12,7 @@ export interface Project {
     kicker: string;
     previewImages?: string[];
     showGithub?: boolean;
+    privacyNote?: string;
 }
 
 export interface TechItem {

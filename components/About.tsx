@@ -81,15 +81,15 @@ export default function About() {
 
             <div className="stats" aria-label="Statistiche">
                 <div className="stats__item reveal">
-                    <div className="stats__num"><StatCounter target={3} /></div>
+                    <div className="stats__num"><StatCounter target={4} /></div>
                     <div className="stats__lbl">{t.about.stat1}</div>
                 </div>
                 <div className="stats__item reveal" data-delay="1">
-                    <div className="stats__num"><StatCounter target={4} suffix="+" /></div>
+                    <div className="stats__num"><StatCounter target={3} suffix="+" /></div>
                     <div className="stats__lbl">{t.about.stat2}</div>
                 </div>
                 <div className="stats__item reveal" data-delay="2">
-                    <div className="stats__num">2<span className="stats__small">dom</span></div>
+                    <div className="stats__num"><StatCounter target={2} suffix=" aree" /></div>
                     <div className="stats__lbl">{t.about.stat3}</div>
                 </div>
                 <div className="stats__item reveal" data-delay="3">

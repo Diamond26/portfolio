@@ -33,12 +33,56 @@ function LockThumb() {
     );
 }
 
-/* ─── Image thumb (first image only, no carousel needed here) ─── */
-function ImgThumb({ src, alt }: { src: string; alt: string }) {
+/* ─── Inner image carousel ─── */
+function InnerCarousel({ images, alt }: { images: string[]; alt: string }) {
+    const [idx, setIdx] = useState(0);
+    const [paused, setPaused] = useState(false);
+
+    useEffect(() => {
+        if (images.length <= 1 || paused) return;
+        const t = setInterval(() => setIdx(i => (i + 1) % images.length), 2000);
+        return () => clearInterval(t);
+    }, [images.length, paused]);
+
+    const go = (next: number) => {
+        setIdx((next + images.length) % images.length);
+        setPaused(true);
+        setTimeout(() => setPaused(false), 4000);
+    };
+
     return (
         <div className="pcf__imgwrap">
-            <Image src={src} alt={alt} fill sizes="(max-width:900px) 100vw, 50vw"
-                style={{ objectFit: "cover" }} quality={90} priority />
+            <Image
+                src={images[idx]}
+                alt={`${alt} ${idx + 1}`}
+                fill
+                sizes="(max-width:900px) 100vw, 50vw"
+                style={{ objectFit: "contain", transition: "opacity 0.4s" }}
+                quality={90}
+                priority
+            />
+            {images.length > 1 && (
+                <>
+                    <button
+                        onClick={e => { e.stopPropagation(); go(idx - 1); }}
+                        className="pcf__img-arrow pcf__img-arrow--prev"
+                        aria-label="Immagine precedente"
+                    >&#8249;</button>
+                    <button
+                        onClick={e => { e.stopPropagation(); go(idx + 1); }}
+                        className="pcf__img-arrow pcf__img-arrow--next"
+                        aria-label="Immagine successiva"
+                    >&#8250;</button>
+                    <div className="pcf__img-dots">
+                        {images.map((_, i) => (
+                            <span
+                                key={i}
+                                className={`pcf__img-dot${i === idx ? " pcf__img-dot--active" : ""}`}
+                            />
+                        ))}
+                    </div>
+                </>
+            )}
         </div>
     );
 }
@@ -124,7 +168,7 @@ export default function Projects() {
                                     </span>
 
                                     {imgs.length > 0
-                                        ? <ImgThumb src={imgs[0]} alt={p.imageAlt} />
+                                        ? <InnerCarousel images={imgs} alt={p.imageAlt} />
                                         : <LockThumb />
                                     }
 
@@ -150,42 +194,53 @@ export default function Projects() {
 
                                     {/* action buttons */}
                                     <div className="pcard__foot">
-                                        {p.liveUrl ? (
-                                            <a href={p.liveUrl} target="_blank" rel="noopener noreferrer"
-                                                className="pcard__btn pcard__btn--primary"
-                                                onClick={e => e.stopPropagation()}>
-                                                <svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true">
-                                                    <circle cx="8" cy="8" r="6.5" stroke="currentColor" strokeWidth="1.4" fill="none" />
-                                                    <path d="M5.5 8h5M8 5.5 10.5 8 8 10.5" stroke="currentColor" strokeWidth="1.4" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+                                        {p.privacyNote ? (
+                                            <span className="pcard__privacy-note">
+                                                <svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true" style={{ flexShrink: 0 }}>
+                                                    <rect x="3" y="7" width="10" height="8" rx="1.5" stroke="currentColor" strokeWidth="1.4" fill="none" />
+                                                    <path d="M5 7V5a3 3 0 0 1 6 0v2" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" fill="none" />
                                                 </svg>
-                                                {t.projects.liveDemoLabel}
-                                            </a>
-                                        ) : (
-                                            <span className="pcard__btn pcard__btn--disabled">
-                                                <svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true">
-                                                    <circle cx="8" cy="8" r="6.5" stroke="currentColor" strokeWidth="1.4" fill="none" />
-                                                    <path d="M5.5 8h5M8 5.5 10.5 8 8 10.5" stroke="currentColor" strokeWidth="1.4" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-                                                </svg>
-                                                {t.projects.liveDemoLabel}
+                                                {p.privacyNote}
                                             </span>
-                                        )}
-
-                                        {p.showGithub !== false && p.githubUrl ? (
-                                            <a href={p.githubUrl} target="_blank" rel="noopener noreferrer"
-                                                className="pcard__btn pcard__btn--ghost"
-                                                onClick={e => e.stopPropagation()}>
-                                                <svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true">
-                                                    <path d="M8 1C4.13 1 1 4.13 1 8c0 3.09 2.01 5.72 4.79 6.65.35.06.48-.15.48-.34v-1.19c-1.95.42-2.36-.94-2.36-.94-.32-.81-.78-1.02-.78-1.02-.64-.43.05-.43.05-.43.7.05 1.07.72 1.07.72.62 1.07 1.64.76 2.04.58.06-.45.24-.76.44-.93-1.55-.18-3.19-.78-3.19-3.46 0-.76.27-1.39.72-1.88-.07-.17-.31-.89.07-1.85 0 0 .58-.19 1.92.72A6.7 6.7 0 0 1 8 4.82c.59 0 1.19.08 1.74.23 1.34-.91 1.92-.72 1.92-.72.38.96.14 1.68.07 1.85.45.49.72 1.12.72 1.88 0 2.69-1.64 3.28-3.2 3.46.25.22.47.65.47 1.31v1.95c0 .19.13.41.48.34C12.99 13.72 15 11.09 15 8c0-3.87-3.13-7-7-7z" fill="currentColor" />
-                                                </svg>
-                                                {t.projects.sourceLabel}
-                                            </a>
                                         ) : (
-                                            <span className="pcard__btn pcard__btn--disabled">
-                                                <svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true">
-                                                    <path d="M3 3h10M3 8h10M3 13h10" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
-                                                </svg>
-                                                {t.projects.sourceLabel}
-                                            </span>
+                                            <>
+                                                {p.liveUrl ? (
+                                                    <a href={p.liveUrl} target="_blank" rel="noopener noreferrer"
+                                                        className="pcard__btn pcard__btn--primary"
+                                                        onClick={e => e.stopPropagation()}>
+                                                        <svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true">
+                                                            <circle cx="8" cy="8" r="6.5" stroke="currentColor" strokeWidth="1.4" fill="none" />
+                                                            <path d="M5.5 8h5M8 5.5 10.5 8 8 10.5" stroke="currentColor" strokeWidth="1.4" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+                                                        </svg>
+                                                        {t.projects.liveDemoLabel}
+                                                    </a>
+                                                ) : (
+                                                    <span className="pcard__btn pcard__btn--disabled">
+                                                        <svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true">
+                                                            <circle cx="8" cy="8" r="6.5" stroke="currentColor" strokeWidth="1.4" fill="none" />
+                                                            <path d="M5.5 8h5M8 5.5 10.5 8 8 10.5" stroke="currentColor" strokeWidth="1.4" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+                                                        </svg>
+                                                        {t.projects.liveDemoLabel}
+                                                    </span>
+                                                )}
+                                                {p.showGithub !== false && p.githubUrl ? (
+                                                    <a href={p.githubUrl} target="_blank" rel="noopener noreferrer"
+                                                        className="pcard__btn pcard__btn--ghost"
+                                                        onClick={e => e.stopPropagation()}>
+                                                        <svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true">
+                                                            <path d="M8 1C4.13 1 1 4.13 1 8c0 3.09 2.01 5.72 4.79 6.65.35.06.48-.15.48-.34v-1.19c-1.95.42-2.36-.94-2.36-.94-.32-.81-.78-1.02-.78-1.02-.64-.43.05-.43.05-.43.7.05 1.07.72 1.07.72.62 1.07 1.64.76 2.04.58.06-.45.24-.76.44-.93-1.55-.18-3.19-.78-3.19-3.46 0-.76.27-1.39.72-1.88-.07-.17-.31-.89.07-1.85 0 0 .58-.19 1.92.72A6.7 6.7 0 0 1 8 4.82c.59 0 1.19.08 1.74.23 1.34-.91 1.92-.72 1.92-.72.38.96.14 1.68.07 1.85.45.49.72 1.12.72 1.88 0 2.69-1.64 3.28-3.2 3.46.25.22.47.65.47 1.31v1.95c0 .19.13.41.48.34C12.99 13.72 15 11.09 15 8c0-3.87-3.13-7-7-7z" fill="currentColor" />
+                                                        </svg>
+                                                        {t.projects.sourceLabel}
+                                                    </a>
+                                                ) : (
+                                                    <span className="pcard__btn pcard__btn--disabled">
+                                                        <svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true">
+                                                            <path d="M3 3h10M3 8h10M3 13h10" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+                                                        </svg>
+                                                        {t.projects.sourceLabel}
+                                                    </span>
+                                                )}
+                                            </>
                                         )}
                                     </div>
                                 </div>

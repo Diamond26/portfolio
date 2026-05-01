@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useLanguage } from "@/context/LanguageContext";
 import { PERSONAL_INFO } from "@/lib/data";
 
@@ -44,12 +45,28 @@ export default function Hero() {
                 {/* ── LEFT ─────────────────────────────────────── */}
                 <div className="hero__left">
 
-                    {/* Badge */}
-                    <div className="hero__badge">
-                        <span className="status-dot" aria-hidden="true" />
-                        <span>{t.hero.badge}</span>
-                        <span className="hero__badge-sep" aria-hidden="true">·</span>
-                        <span>{t.hero.location}</span>
+                    {/* Avatar + Badge inline */}
+                    <div className="hero__top">
+                        <div className="hero__avatar">
+                            <Image
+                                src="/fototessera.png"
+                                alt="Davide Secci"
+                                width={180}
+                                height={180}
+                                className="hero__avatar-img"
+                                priority
+                            />
+                        </div>
+                        <div className="hero__top-meta">
+                            <div className="hero__badge">
+                                <span className="status-dot" aria-hidden="true" />
+                                <span>{t.hero.badge}</span>
+                                <span className="hero__badge-sep" aria-hidden="true">·</span>
+                                <span>{t.hero.location}</span>
+                            </div>
+                            <p className="hero__top-name">Davide Secci</p>
+                            <p className="hero__top-role">{t.nav.role}</p>
+                        </div>
                     </div>
 
                     {/* Heading */}

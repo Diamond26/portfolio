@@ -1,10 +1,35 @@
 "use client";
 
+import { useState } from "react";
 import { useLanguage } from "@/context/LanguageContext";
 import { PERSONAL_INFO } from "@/lib/data";
 
+type Status = "idle" | "sending" | "success" | "error";
+
 export default function Contact() {
     const { t } = useLanguage();
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [message, setMessage] = useState("");
+    const [status, setStatus] = useState<Status>("idle");
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setStatus("sending");
+
+        const res = await fetch("/api/contact", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ name, email, message }),
+        });
+
+        if (res.ok) {
+            setStatus("success");
+            setName(""); setEmail(""); setMessage("");
+        } else {
+            setStatus("error");
+        }
+    };
 
     return (
         <section id="contact" className="section contact" aria-labelledby="contact-heading">
@@ -17,6 +42,62 @@ export default function Contact() {
                 </h2>
 
                 <p className="contact__lede">{t.contact.lede}</p>
+
+                {/* Form */}
+                <form className="cform" onSubmit={handleSubmit} noValidate>
+                    <div className="cform__row">
+                        <div className="cform__field">
+                            <label className="cform__label" htmlFor="cf-name">{t.contact.formName}</label>
+                            <input
+                                id="cf-name"
+                                className="cform__input"
+                                type="text"
+                                value={name}
+                                onChange={e => setName(e.target.value)}
+                                required
+                                autoComplete="name"
+                            />
+                        </div>
+                        <div className="cform__field">
+                            <label className="cform__label" htmlFor="cf-email">{t.contact.formEmail}</label>
+                            <input
+                                id="cf-email"
+                                className="cform__input"
+                                type="email"
+                                value={email}
+                                onChange={e => setEmail(e.target.value)}
+                                required
+                                autoComplete="email"
+                            />
+                        </div>
+                    </div>
+                    <div className="cform__field">
+                        <label className="cform__label" htmlFor="cf-message">{t.contact.formMessage}</label>
+                        <textarea
+                            id="cf-message"
+                            className="cform__input cform__textarea"
+                            value={message}
+                            onChange={e => setMessage(e.target.value)}
+                            required
+                            rows={5}
+                        />
+                    </div>
+
+                    {status === "success" && (
+                        <p className="cform__feedback cform__feedback--ok">{t.contact.formSuccess}</p>
+                    )}
+                    {status === "error" && (
+                        <p className="cform__feedback cform__feedback--err">{t.contact.formError}</p>
+                    )}
+
+                    <button
+                        type="submit"
+                        className="cform__submit btn btn--primary"
+                        disabled={status === "sending"}
+                    >
+                        {status === "sending" ? t.contact.formSending : t.contact.formSubmit}
+                    </button>
+                </form>
 
                 <div className="contact__links">
                     <a className="clink" href={`mailto:${PERSONAL_INFO.email}`}>
