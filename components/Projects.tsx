@@ -34,7 +34,7 @@ function LockThumb() {
 }
 
 /* ─── Inner image carousel ─── */
-function InnerCarousel({ images, alt }: { images: string[]; alt: string }) {
+function InnerCarousel({ images, alt }: { images: readonly string[]; alt: string }) {
     const [idx, setIdx] = useState(0);
     const [paused, setPaused] = useState(false);
 
@@ -194,13 +194,13 @@ export default function Projects() {
 
                                     {/* action buttons */}
                                     <div className="pcard__foot">
-                                        {p.privacyNote ? (
+                                        {(p as { privacyNote?: string }).privacyNote ? (
                                             <span className="pcard__privacy-note">
                                                 <svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true" style={{ flexShrink: 0 }}>
                                                     <rect x="3" y="7" width="10" height="8" rx="1.5" stroke="currentColor" strokeWidth="1.4" fill="none" />
                                                     <path d="M5 7V5a3 3 0 0 1 6 0v2" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" fill="none" />
                                                 </svg>
-                                                {p.privacyNote}
+                                                {(p as { privacyNote?: string }).privacyNote}
                                             </span>
                                         ) : (
                                             <>
