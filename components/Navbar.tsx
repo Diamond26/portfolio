@@ -83,11 +83,6 @@ export default function Navbar() {
             onClick: () => scrollTo("stack"),
         },
         {
-            icon: <span style={iconStyle}>{icons.timeline}</span>,
-            label: t.nav.timeline,
-            onClick: () => scrollTo("timeline"),
-        },
-        {
             icon: <span style={iconStyle}>{icons.contact}</span>,
             label: t.nav.contact,
             onClick: () => scrollTo("contact"),
