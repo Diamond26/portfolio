@@ -1,27 +1,44 @@
 # Portfolio — Davide Secci
 
-Portfolio personale one-page sviluppato con **Next.js 15** (App Router), **TypeScript** e **Tailwind CSS**.
+Portfolio personale sviluppato come progetto autonomo per dimostrare competenze in sviluppo web front-end con tecnologie moderne.
 
-## Stack
+**Live:** https://davidesecci.com
+
+---
+
+## Tecnologie utilizzate
 
 | Tecnologia | Versione |
 |---|---|
-| Next.js | 15 (App Router) |
+| Next.js (App Router) | 15 |
 | TypeScript | 5 |
 | Tailwind CSS | 3 |
 | Node.js | ≥ 18 |
 
+---
+
+## Funzionalità implementate
+
+- Architettura **one-page** con sezioni Hero, About, Projects, Tech Stack e Contact
+- **Supporto multilingua** italiano / inglese gestito tramite React Context (`LanguageContext`)
+- **SEO** ottimizzata: metadata statici, sitemap generata automaticamente, robots.txt
+- **Header HTTP di sicurezza** configurati in `next.config.ts`: CSP, HSTS, X-Frame-Options, Referrer-Policy, Permissions-Policy
+- **Deploy continuo** su Vercel con build automatica ad ogni push su `main`
+
+---
+
 ## Struttura del progetto
 
 ```
+portfolio/
 ├── app/
-│   ├── layout.tsx        # Root layout con SEO metadata
-│   ├── page.tsx          # Entry point — composizione sezioni
-│   ├── globals.css       # Stili globali + utility Tailwind
-│   ├── providers.tsx     # Client-side context wrapper
-│   └── sitemap.ts        # Sitemap generata automaticamente
-├── components/           # Componenti per sezione
-│   ├── Navbar.tsx        # Navbar con toggle IT/EN
+│   ├── layout.tsx        # Root layout con metadata SEO
+│   ├── page.tsx          # Entry point, composizione sezioni
+│   ├── globals.css       # Stili globali
+│   ├── providers.tsx     # Wrapper context lato client
+│   └── sitemap.ts        # Generazione sitemap automatica
+├── components/           # Componenti React per sezione
+│   ├── Navbar.tsx        # Navbar con toggle lingua IT/EN
 │   ├── Hero.tsx
 │   ├── About.tsx
 │   ├── Projects.tsx
@@ -30,73 +47,42 @@ Portfolio personale one-page sviluppato con **Next.js 15** (App Router), **TypeS
 │   ├── Contact.tsx
 │   └── Footer.tsx
 ├── context/
-│   └── LanguageContext.tsx  # Context multilingua IT/EN
+│   └── LanguageContext.tsx
 ├── lib/
-│   ├── data.ts           # Dati personali e stack tecnologico
-│   ├── i18n.ts           # Tutte le traduzioni IT/EN
+│   ├── data.ts           # Dati personali e stack
+│   ├── i18n.ts           # Traduzioni IT/EN
 │   └── types.ts          # Interfacce TypeScript
 └── public/
     └── robots.txt
 ```
 
-## Personalizzazione
+---
 
-Per aggiornare i contenuti modifica solo questi due file:
-
-- **`lib/data.ts`** — nome, email, GitHub, stack tecnologico
-- **`lib/i18n.ts`** — tutti i testi del sito in italiano e inglese (bio, progetti, titoli, label)
-
-## Avvio locale
+## Avvio in locale
 
 ```bash
-# Installa dipendenze
+git clone https://github.com/Diamond26/portfolio.git
+cd portfolio
 npm install
-
-# Avvia dev server
 npm run dev
-# → http://localhost:3000
-
-# Build di produzione
-npm run build
-npm start
 ```
 
-## Deploy su Vercel
-
-### 1. Push su GitHub
+Il server sarà disponibile su `http://localhost:3000`.
 
 ```bash
-git init          # se non già inizializzato
-git add .
-git commit -m "initial commit"
-git remote add origin https://github.com/<username>/<repo>.git
-git push -u origin main
+npm run build   # Build di produzione
+npm start       # Avvia il server di produzione
+npm run lint    # Linting ESLint
 ```
 
-### 2. Import su Vercel
+---
 
-1. Vai su [vercel.com](https://vercel.com) → **Add New → Project**
-2. Seleziona il repository GitHub
-3. Framework preset: **Next.js** (rilevato automaticamente)
-4. Clicca **Deploy**
+## Deploy
 
-> Il build command e l'output directory sono già configurati correttamente in `package.json`.
+Il progetto è deployato su Vercel. Ogni push su `main` avvia automaticamente una nuova build. Non sono necessarie variabili d'ambiente.
 
-### 3. Dominio personalizzato (opzionale)
-
-1. Nel dashboard Vercel → **Settings → Domains**
-2. Aggiungi il tuo dominio
-3. Configura i DNS come indicato da Vercel (record A o CNAME)
-4. Aggiorna `metadataBase` in `app/layout.tsx` con il dominio reale:
-   ```ts
-   metadataBase: new URL("https://tuo-dominio.com"),
-   ```
-5. Aggiorna l'URL in `app/sitemap.ts` e `public/robots.txt`
-
-## Sicurezza
-
-Gli header HTTP di sicurezza (CSP, X-Frame-Options, HSTS, Referrer-Policy, Permissions-Policy) sono configurati in `next.config.ts` e vengono applicati automaticamente su Vercel.
+---
 
 ## Licenza
 
-Codice sorgente a uso personale. Tutti i diritti riservati.
+Tutti i diritti riservati © Davide Secci.
