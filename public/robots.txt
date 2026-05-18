@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://your-domain.com/sitemap.xml
+# TODO: replace placeholder domain with real deployed URL before going live
+Sitemap: https://davidesecci.com/sitemap.xml

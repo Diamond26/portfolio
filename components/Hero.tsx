@@ -50,7 +50,7 @@ export default function Hero() {
                         <div className="hero__avatar">
                             <Image
                                 src="/fototessera.png"
-                                alt="Davide Secci"
+                                alt="Davide Secci — Software Developer"
                                 width={180}
                                 height={180}
                                 className="hero__avatar-img"
@@ -71,6 +71,8 @@ export default function Hero() {
 
                     {/* Heading */}
                     <h1 className="hero__heading">
+                        {/* sr-only keeps developer name in H1 for crawlers */}
+                        <span className="sr-only">Davide Secci - </span>
                         <span className="hero__h-line">
                             {t.hero.word1}&nbsp;<em className="serif hero__h-accent">{t.hero.word2}</em>
                         </span>
@@ -173,3 +175,4 @@ export default function Hero() {
         </section>
     );
 }
+

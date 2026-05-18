@@ -96,8 +96,6 @@ function DockIcon({ children }: { children: ReactNode }) {
     return <div className="flex items-center justify-center w-full h-full">{children}</div>;
 }
 
-export { DockLabel, DockIcon };
-
 export default function Dock({
     items,
     className = "",
